@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js",
+    "docker-delete": "docker rm -f docker-learning",
+    "run-docker": "docker run -d --name docker-learning -p 8080:8080 -v /home/pertinate/Documents/Workspace/docker-learning/src:/home/node/app/src pertinate/docker-learning",
+    "dev": "npm run docker-delete; npm run run-docker"
   },
   "repository": {
     "type": "git",
