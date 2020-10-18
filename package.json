@@ -4,13 +4,11 @@
   "description": "test",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js",
-    "docker-delete": "docker rm -f docker-learning",
-    "build": "docker build -t pertinate/docker-learning .",
-    "run:dev": "docker run -d --name docker-learning -p 8080:8080 -v /home/pertinate/Documents/Workspace/docker-learning/src:/home/node/app/src pertinate/docker-learning",
-    "run:prod": "docker run -d --name docker-learning -p 8080:8080 pertinate/docker-learning",
-    "dev": "npm run docker-delete; npm run run:dev"
+    "test": "jest --verbose --collectCoverage",
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "dev:container": "docker run --rm -it --name node-docker -v $PWD:/home/app -w /home/app -e \"PORT=8080\" -p 8080:8080 -u node node:latest /bin/bash"
   },
   "repository": {
     "type": "git",
@@ -24,6 +22,18 @@
   },
   "homepage": "https://github.com/pertinate/docker-learning#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "@types/express": "^4.17.8",
+    "express": "^4.17.1",
+    "supertest": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.10",
+    "@types/supertest": "^2.0.10",
+    "jest": "^26.5.3",
+    "ts-jest": "^26.4.1",
+    "ts-node": "^9.0.0",
+    "ts-node-dev": "^1.0.0",
+    "typescript": "^4.0.3"
   }
 }

@@ -1,4 +1,4 @@
-FROM node:current
+FROM node:14.13.1-alpine3.12
 
 ARG port=8080
 
@@ -16,4 +16,4 @@ ENV PORT=${port}
 
 EXPOSE ${port}
 
-CMD [ "npm", "start" ]
+CMD npm run start
